@@ -29,6 +29,8 @@
     "buildOnSave": false,
     "files": [
         "./app/bootstrap.ts",
+        "./app/ChildComponent.ts",
+        "./app/DatabindingExampleComponent.ts",
         "./app/DecoratorPipe.ts",
         "./app/DirectivesExamplesComponent.ts",
         "./app/helloworld/hello-world.component.ts",
