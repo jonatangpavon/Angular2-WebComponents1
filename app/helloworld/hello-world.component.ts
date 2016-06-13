@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject,OnInit } from '@angular/core'
 
 import { HelloWorldService } from './hello-world.service'
 import {HighlightDirective} from '../HighlightDirective'
@@ -21,11 +21,12 @@ export class HelloWorldComponent implements OnInit{
   hello: string
   today: Date = new Date()
   num: number = 23.5
-  constructor(private helloWorldService:HelloWorldService){
+  constructor(private helloWorldService:HelloWorldService,
+    @Inject('config') private config){
   }
 
   ngOnInit(){
-    this.hello = this.helloWorldService.getHello()
+    this.hello = this.helloWorldService.getHello() + " " +this.config.api
   }
 
 }
