@@ -1,16 +1,13 @@
-import { Component, Inject,OnInit } from '@angular/core'
-
+import { Component, Inject,OnInit} from '@angular/core'
+import {Routes, Router} from '@angular/router'
 import { HelloWorldService } from './hello-world.service'
 import {HighlightDirective} from '../HighlightDirective'
 import {DecoratorPipe} from '../DecoratorPipe'
 
 @Component({
-  selector: 'ng2-hello-world',
+  selector: 'helloworld',
   providers: [HelloWorldService],
-  template: `<h1 highlight id="hello">{{hello | uppercase}}</h1>
-              <p>{{today | date:'medium'}}</p>
-              <p>{{num | currency: 'EUR':true}}</p>
-              <p>{{ 'prueba' | decorator: '***' }}
+  template: `<button (click)="passInfo()">Pass info</button>
   `,
   directives: [HighlightDirective],
   pipes: [DecoratorPipe]
@@ -22,11 +19,16 @@ export class HelloWorldComponent implements OnInit{
   today: Date = new Date()
   num: number = 23.5
   constructor(private helloWorldService:HelloWorldService,
+    @Inject(Router) private router:Router,
     @Inject('config') private config){
   }
 
   ngOnInit(){
     this.hello = this.helloWorldService.getHello() + " " +this.config.api
+  }
+
+  passInfo(){
+    this.router.navigate(['/other/:info',' Paso de informacion'])
   }
 
 }
