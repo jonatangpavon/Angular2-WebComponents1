@@ -7,7 +7,7 @@ import {DecoratorPipe} from '../DecoratorPipe'
 @Component({
   selector: 'helloworld',
   providers: [HelloWorldService],
-  template: `<button (click)="passInfo()">Pass info</button>
+  template: `<button (click)="goToOther()">Go to Other</button>
   `,
   directives: [HighlightDirective],
   pipes: [DecoratorPipe]
@@ -27,8 +27,8 @@ export class HelloWorldComponent implements OnInit{
     this.hello = this.helloWorldService.getHello() + " " +this.config.api
   }
 
-  passInfo(){
-    this.router.navigate(['/other/:info',' Paso de informacion'])
+  goToOther(){
+    this.router.navigate(['/other','from', 'hello'])
   }
 
 }

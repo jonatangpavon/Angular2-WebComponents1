@@ -11,14 +11,11 @@ import {provide, bind} from '@angular/core'
 
 //import {LocationStrategy, PathLocationStrategy} from '@angular/platform/common';
 import {
-  PlatformLocation,
   LocationStrategy,
-  HashLocationStrategy,
-  APP_BASE_HREF,
   PathLocationStrategy}
 from '@angular/common';
 //LocationStrategy, HashLocationStrategy
-import {ROUTER_PROVIDERS,Router} from '@angular/router';
+import {ROUTER_PROVIDERS} from '@angular/router';
 
 let config = {
   api: 'http://api',
@@ -26,6 +23,6 @@ let config = {
 }
 
 bootstrap(AppComponent, [
-  provide('config', {useValue: config}), provide(APP_BASE_HREF, {useValue : '/' }),
-  ROUTER_PROVIDERS, bind(LocationStrategy).toClass(PathLocationStrategy)
+  provide('config', {useValue: config}),
+  ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: PathLocationStrategy})
 ])

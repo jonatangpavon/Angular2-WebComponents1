@@ -38,6 +38,7 @@
         "./app/HighlightDirective.ts",
         "./app/main.ts",
         "./app/OtherComponent.ts",
+        "./app/SecondComponent.ts",
         "./test/helloworld/hello-world.component.spec.ts",
         "./test/helloworld/hello-world.service.spec.ts",
         "./test/init.ts"

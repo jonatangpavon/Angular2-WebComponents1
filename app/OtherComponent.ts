@@ -1,16 +1,37 @@
 import {Component, OnInit, Inject} from '@angular/core'
-import {Routes, ROUTER_DIRECTIVES, RouteSegment} from '@angular/router'
-
+import {RouteSegment,Router,Routes, ROUTER_DIRECTIVES} from '@angular/router'
+import {SecondComponent} from './SecondComponent'
 @Component({
   selector: 'other',
-  template: `<p>This is other component {{info}}</p>
-
-`
+  template: `<p>This is other component </p>
+            <p>Param 1: {{param1}}</p>
+            <p>Param 2: {{param2}}</p>
+            <button (click)="goToHello()"> Go to Hello</button>
+            <a [routerLink]="['./second']">Second </a>
+            <a [routerLink]="['/hello']">Hello </a>
+            <router-outlet></router-outlet>
+`,
+  directives: [ROUTER_DIRECTIVES]
 })
 
-export class OtherComponent implements OnInit {
-  info:any
-  contructor(@Inject(RouteSegment) private routeSegment:RouteSegmen ngOnInit()){
-    this.info = this.routeSegment.getParam("info")
+@Routes([
+  {path: '/second', component:SecondComponent}
+])
+
+export class OtherComponent implements OnInit{
+
+  param1: string
+  param2: string
+
+  constructor(private routeSegment:RouteSegment ,
+            private router:Router){}
+
+  ngOnInit(){
+   this.param1 = this.routeSegment.getParam('param1')
+   this.param2 = this.routeSegment.getParam('param2')
   }
+  goToHello(){
+    this.router.navigate(['/hello'])
+  }
+
 }
